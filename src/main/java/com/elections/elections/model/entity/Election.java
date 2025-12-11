@@ -1,5 +1,6 @@
 package com.elections.elections.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +29,6 @@ public class Election {
     private LocalDateTime endDateTime;
 
     @OneToMany(mappedBy = "election", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Candidate> options;
 }

@@ -24,6 +24,13 @@ public class ElectorService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Elector with username: " + username + ", doesn't exist"));
     }
 
+    @Transactional(readOnly = true)
+    public String getLoginById(Long electorId) {
+        return electorRepository.findById(electorId)
+                .orElseThrow(() -> new IllegalArgumentException("User with provided Id has not been found"))
+                .getLogin();
+    }
+
     @Transactional
     public Elector createNewElector(String login, String password, String name, String surname, Role role) {
         if (electorRepository.existsByLogin(login)) {
@@ -49,13 +56,21 @@ public class ElectorService implements UserDetailsService {
     }
 
     @Transactional
-    public Elector unLockElector(Long id) {
+    public Elector unlockElector(Long id) {
         Elector elector = electorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Elector has not been found"));
         if (elector.isLocked()) {
             elector.setLocked(false);
         }
         return elector;
+    }
+
+    @Transactional
+    public void deleteElector(Long electorId) {
+        if (!electorRepository.existsById(electorId)) {
+            throw new IllegalArgumentException("Elect with provided ID has not been found");
+        }
+        electorRepository.deleteById(electorId);
     }
 
 }

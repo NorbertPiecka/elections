@@ -37,8 +37,9 @@ public class Elector implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role role   ;
 
+    @Column(nullable = false)
     private boolean isLocked = false;
 
     @Override

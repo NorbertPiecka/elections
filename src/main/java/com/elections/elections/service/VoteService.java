@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -61,16 +64,38 @@ public class VoteService {
     }
 
     public double getCandidateVotesPrecent(Long candidateId, Long electionId) {
-        long candidateVotes = voteRepository.countByCandidateIdAndElectionId(candidateId, electionId);
+        long candidateVotes = getCandidateVotes(candidateId, electionId);
         long allVotes = voteRepository.countByElectionId(electionId);
         if (allVotes == 0) return 0.0;
         return ((double) candidateVotes / allVotes) * 100.0;
     }
 
-    public double calculateAttendance(Long electionId, long allVoters) {
+    public double calculateAttendance(Long electionId) {
         long allVotes = voteRepository.countByElectionId(electionId);
         long notLockedElectors = electorRepository.countByIsLockedFalse();
         if (notLockedElectors == 0) return 0.0;
         return ((double) allVotes / notLockedElectors) * 100.0;
+    }
+
+    public Map<String, Double> getElectionResults(Long electionId) {
+        if (!electionRepository.existsById(electionId)) {
+            throw new IllegalArgumentException("Election with id: " + electionId + ", doesn't exist");
+        }
+
+        List<Candidate> candidates = candidateRepository.findByElectionId(electionId);
+        Map<String, Double> results = new LinkedHashMap<>();
+        long allVotes = voteRepository.countByElectionId(electionId);
+
+        if (allVotes == 0) {
+            candidates.forEach(candidate -> results.put(candidate.getName(), 0.0));
+            return results;
+        }
+
+        for (Candidate candidate: candidates) {
+            double votePrecent = getCandidateVotesPrecent(candidate.getId(), electionId);
+            results.put(candidate.getName(), votePrecent);
+        }
+
+        return results;
     }
 }

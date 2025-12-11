@@ -1,5 +1,6 @@
 package com.elections.elections.service;
 
+import com.elections.elections.model.dto.ElectionDTO;
 import com.elections.elections.model.entity.Candidate;
 import com.elections.elections.model.entity.Election;
 import com.elections.elections.repository.CandidateRepository;
@@ -28,13 +29,17 @@ public class ElectionService {
     }
 
     @Transactional
-    public Election createNewElection(Election election) {
-        if (electionRepository.existsByName(election.getName())) {
-            throw new IllegalArgumentException("Election with name: " + election.getName() + ", already exists");
+    public Election createNewElection(ElectionDTO dto) {
+        if (electionRepository.existsByName(dto.getName())) {
+            throw new IllegalArgumentException("Election with name: " + dto.getName() + ", already exists");
         }
-        if (election.getStartDateTime().isAfter(election.getEndDateTime())) {
+        if (dto.getStartDateTime().isAfter(dto.getEndDateTime())) {
             throw new IllegalArgumentException("Start date of election need to be before end date");
         }
+        Election election = new Election();
+        election.setName(dto.getName());
+        election.setStartDateTime(dto.getStartDateTime());
+        election.setEndDateTime(dto.getEndDateTime());
         return electionRepository.save(election);
     }
 
