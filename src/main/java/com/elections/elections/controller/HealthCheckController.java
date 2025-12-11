@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/elections/v1")
 public class HealthCheckController {
-
     @GetMapping
     public ResponseEntity<Void> checkApiHealth() {
         return new ResponseEntity<>(HttpStatus.OK);

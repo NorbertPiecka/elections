@@ -25,6 +25,12 @@ public class ElectionController {
         return ResponseEntity.ok(elections);
     }
 
+    @GetMapping("/election/current")
+    public ResponseEntity<List<Election>> getCurrentElections() {
+        List<Election> elections = electionService.findCurrentElections();
+        return ResponseEntity.ok(elections);
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/election")
     public ResponseEntity<Election> createNewElection(@Valid @RequestBody ElectionDTO dto) {
@@ -37,9 +43,31 @@ public class ElectionController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/admin/election/{electionId}")
+    public ResponseEntity<Void> deleteElection(@PathVariable Long electionId) {
+        try {
+            electionService.deletedElection(electionId);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/election/{electionId}/candidate")
     public ResponseEntity<Candidate> addCandidate(@PathVariable Long electionId, @RequestParam String candidateName) {
         Candidate candidate = electionService.addCandidateToElection(electionId, candidateName);
         return new ResponseEntity<>(candidate, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/admin/election/{candidateId}/candidate")
+    public ResponseEntity<Void> deleteCandidate(@PathVariable Long candidateId) {
+        try {
+            electionService.deleteCandidate(candidateId);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

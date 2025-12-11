@@ -26,14 +26,14 @@ public class VoteController {
     }
 
     @GetMapping("/results/{electionId}/candidate/{candidateId}/votes")
-    public ResponseEntity<Long> getCandidateVotes(@PathVariable Long electionId, @PathVariable Long candidateId) {
-        long votes = voteService.getCandidateVotes(candidateId, electionId);
+    public ResponseEntity<Map<String, Long>> getCandidateVotes(@PathVariable Long electionId, @PathVariable Long candidateId) {
+        Map<String, Long> votes = voteService.getCandidateVotes(candidateId, electionId);
         return ResponseEntity.ok(votes);
     }
 
     @GetMapping("/results/{electionId}/candidate/{candidateId}")
-    public ResponseEntity<Double> getCandidateResults(@PathVariable Long electionId, @PathVariable Long candidateId) {
-        double candidatePrecent = voteService.getCandidateVotesPrecent(candidateId, electionId);
+    public ResponseEntity<Map<String, Double>> getCandidateResults(@PathVariable Long electionId, @PathVariable Long candidateId) {
+        Map<String, Double> candidatePrecent = voteService.getCandidateVotesPrecent(candidateId, electionId);
         return ResponseEntity.ok(candidatePrecent);
     }
 
@@ -45,8 +45,8 @@ public class VoteController {
 
     @GetMapping("/results/{electionId}/attendance")
     public ResponseEntity<Map<String, Double>> getElectionAttendance(@PathVariable Long electionId) {
-        double attendance = voteService.calculateAttendance(electionId);
-        return ResponseEntity.ok(Map.of("attendance", attendance));
+        Map<String, Double> attendance = voteService.calculateAttendance(electionId);
+        return ResponseEntity.ok(attendance);
     }
 
 }

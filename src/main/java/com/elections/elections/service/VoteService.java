@@ -27,6 +27,7 @@ public class VoteService {
     private final ElectionRepository electionRepository;
     private final CandidateRepository candidateRepository;
 
+    @Transactional
     public Vote castVote(Long electorId, Long electionId, Long candidateId) {
         Elector elector = electorRepository.findById(electorId)
                 .orElseThrow(() -> new IllegalArgumentException("Elector has not been found"));
@@ -59,43 +60,43 @@ public class VoteService {
         return voteRepository.save(vote);
     }
 
-    public long getCandidateVotes(Long candidateId, Long electionId) {
-        return voteRepository.countByCandidateIdAndElectionId(candidateId, electionId);
+    public Map<String, Long> getCandidateVotes(Long candidateId, Long electionId) {
+        Map<String, Double> results = new LinkedHashMap<>();
+        long candidateVotes = voteRepository.countByCandidateIdAndElectionId(candidateId, electionId);
+        return Map.of(candidateId.toString(), candidateVotes);
     }
 
-    public double getCandidateVotesPrecent(Long candidateId, Long electionId) {
-        long candidateVotes = getCandidateVotes(candidateId, electionId);
+    public Map<String, Double> getCandidateVotesPrecent(Long candidateId, Long electionId) {
+        long candidateVotes = voteRepository.countByCandidateIdAndElectionId(candidateId, electionId);
         long allVotes = voteRepository.countByElectionId(electionId);
-        if (allVotes == 0) return 0.0;
-        return ((double) candidateVotes / allVotes) * 100.0;
+        if (allVotes == 0) return Map.of(candidateId.toString(), 0.0);;
+        double result = ((double) candidateVotes / allVotes) * 100.0;
+        return Map.of(electionId.toString(), Math.round(result * 100.0) / 100.0);
     }
 
-    public double calculateAttendance(Long electionId) {
+    public Map<String, Double> calculateAttendance(Long electionId) {
         long allVotes = voteRepository.countByElectionId(electionId);
         long notLockedElectors = electorRepository.countByIsLockedFalse();
-        if (notLockedElectors == 0) return 0.0;
-        return ((double) allVotes / notLockedElectors) * 100.0;
+        if (notLockedElectors == 0) return Map.of("attendance", 0.0);
+        double attendance = ((double) allVotes / notLockedElectors) * 100.0;
+        return Map.of("attendance", Math.round(attendance * 100.0) / 100.0);
     }
 
     public Map<String, Double> getElectionResults(Long electionId) {
         if (!electionRepository.existsById(electionId)) {
             throw new IllegalArgumentException("Election with id: " + electionId + ", doesn't exist");
         }
-
         List<Candidate> candidates = candidateRepository.findByElectionId(electionId);
         Map<String, Double> results = new LinkedHashMap<>();
         long allVotes = voteRepository.countByElectionId(electionId);
-
         if (allVotes == 0) {
             candidates.forEach(candidate -> results.put(candidate.getName(), 0.0));
             return results;
         }
-
         for (Candidate candidate: candidates) {
-            double votePrecent = getCandidateVotesPrecent(candidate.getId(), electionId);
+            double votePrecent = voteRepository.countByCandidateIdAndElectionId(candidate.getId(), electionId);
             results.put(candidate.getName(), votePrecent);
         }
-
         return results;
     }
 }

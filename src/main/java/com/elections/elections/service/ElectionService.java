@@ -5,6 +5,7 @@ import com.elections.elections.model.entity.Candidate;
 import com.elections.elections.model.entity.Election;
 import com.elections.elections.repository.CandidateRepository;
 import com.elections.elections.repository.ElectionRepository;
+import com.elections.elections.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ElectionService {
     private final ElectionRepository electionRepository;
     private final CandidateRepository candidateRepository;
+    private final VoteRepository voteRepository;
 
     public List<Election> findAllElections() {
         return electionRepository.findAll();
@@ -44,6 +46,14 @@ public class ElectionService {
     }
 
     @Transactional
+    public void deletedElection(Long electionId) {
+        if (!electionRepository.existsById(electionId)) {
+            throw new IllegalArgumentException("Election with provided ID has not been found");
+        }
+        electionRepository.deleteById(electionId);
+    }
+
+    @Transactional
     public Candidate addCandidateToElection(Long electionId, String candidateName) {
         Election election = electionRepository.findById(electionId)
                 .orElseThrow(() -> new IllegalArgumentException("Election has not been found"));
@@ -53,5 +63,14 @@ public class ElectionService {
         candidate.setElection(election);
 
         return candidateRepository.save(candidate);
+    }
+
+    @Transactional
+    public void deleteCandidate(Long candidateId) {
+        if (!candidateRepository.existsById(candidateId)) {
+            throw new IllegalArgumentException("No such candidate has been found");
+        }
+        voteRepository.deleteByCandidateId(candidateId);
+        candidateRepository.deleteById(candidateId);
     }
 }

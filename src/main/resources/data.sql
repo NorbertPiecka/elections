@@ -43,7 +43,7 @@ INSERT INTO candidate (id, election_id, name)  VALUES
 (400, 40, 'Jan Nowak - Radny'),
 (401, 40, 'Ewa Kowalska - Radna');
 
-INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (1, 1, 10, 100);
+INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (1, 6, 10, 100);
 INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (2, 2, 10, 100);
 INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (3, 3, 10, 101);
 INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (4, 4, 10, 100);
@@ -54,7 +54,7 @@ INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (7, 7, 20, 2
 INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (8, 10, 20, 201);
 
 INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (9, 11, 30, 300);
-INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (10, 1, 30, 301);
+INSERT INTO vote (id, elector_id, election_id, candidate_id) VALUES (10, 6, 30, 301);
 
 
 ALTER TABLE elector ALTER COLUMN id RESTART WITH (SELECT MAX(id) + 1 FROM elector);
