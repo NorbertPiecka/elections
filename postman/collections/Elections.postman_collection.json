@@ -1,0 +1,1128 @@
+{
+  "info": {
+    "_postman_id": "b73e16d8-72da-4a2f-bd0d-8943f2794c0b",
+    "name": "Elections",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Logging as locked account",
+      "id": "d353a413-3a39-4a17-88a5-e96ac71b5d5d",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.b",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}",
+          "host": [
+            "{{base_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logging as locked account",
+      "id": "b476b0da-8bb3-4422-89c7-a46bd499b1a0",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.g",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}",
+          "host": [
+            "{{base_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Access All Election List as Elector Logged",
+      "id": "affb9692-131f-46e5-8f70-012aea4b83c5",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/election",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "election"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Access Election List as unregistered account",
+      "id": "cfc5a777-af93-4a1c-8acb-1f2d5fde7957",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/election",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "election"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Access Current Election List",
+      "id": "af2bf60e-c524-4a75-9a26-85ee4ef7fed4",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/election",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "election"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Access To Admin Endpoint as Electror",
+      "id": "6f28a276-22fb-4e1c-a2ae-aedd18429902",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Access To Admin Endpoint as Admin",
+      "id": "778ecd3a-035c-4edd-a71e-21e0960abc56",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Try to lock Elector as Elector",
+      "id": "df535383-6b1e-492d-8ff3-0ae3485c9aaf",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/lock",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "lock"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Try to lock Elector as Admin",
+      "id": "8ddf758f-b16e-4d07-b47e-edf6c261dd5c",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/lock",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "lock"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Try to unlock Elector as Elector",
+      "id": "bea5ab8e-3e4b-4ffd-9f15-1e44b88760c6",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/unlock",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "unlock"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Try to unlock Elector as Admin",
+      "id": "ef6212ea-fdac-4d24-b340-241862f7df4a",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/unlock",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "unlock"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register Elector",
+      "id": "228ec989-637e-4eaa-b1fb-0233a4fd7572",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Jan\",\r\n    \"surname\": \"Brzechwa\",\r\n    \"login\": \"user.jan\",\r\n    \"password\": \"jan\",\r\n    \"role\": \"ELECTOR\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/elector",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "elector"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Elector as Admin",
+      "id": "985ca4f2-d5bd-48d2-9c38-3479becbf427",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/delete",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "delete"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Admin as Admin",
+      "id": "79abdcc0-be58-4201-9b3e-5dd71f0130a1",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/delete",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "delete"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Elector as Elector",
+      "id": "14a3a46b-b54c-4b04-b39c-e271583f5bde",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/electors/:electorId/delete",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "electors",
+            ":electorId",
+            "delete"
+          ],
+          "variable": [
+            {
+              "key": "electorId",
+              "value": "12"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new elections as Admin",
+      "id": "7bd022ce-0a12-465c-b2b9-c992fc7254a9",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Wybory testowe\",\r\n  \"startDateTime\": \"2026-01-10T09:00:00\",\r\n  \"endDateTime\": \"2026-01-20T17:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/admin/election",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "election"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Election",
+      "id": "f5baed2b-17ce-4894-a901-528bbf699189",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Wybory testowe\",\r\n  \"startDateTime\": \"2026-01-10T09:00:00\",\r\n  \"endDateTime\": \"2026-01-20T17:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/admin/election/:electionId",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "election",
+            ":electionId"
+          ],
+          "variable": [
+            {
+              "key": "electionId",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new elections as Admin - Should fail",
+      "id": "df1ba587-5095-4a89-8e9b-29d2f0032166",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Wybory testowe\",\r\n  \"startDateTime\": \"2026-01-21T09:00:00\",\r\n  \"endDateTime\": \"2026-01-20T17:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/admin/election",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "election"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new elections as Elector",
+      "id": "87bebeac-c88b-4aa3-b626-d7abc32b91e6",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Wybory testowe\",\r\n  \"startDateTime\": \"2026-01-10T09:00:00\",\r\n  \"endDateTime\": \"2026-01-20T17:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/admin/election",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "election"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new Candidate for Election",
+      "id": "afc26729-c5b5-4e71-80f1-d5dd78919538",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/election/:electionId/candidate?candidateName=Johny",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "election",
+            ":electionId",
+            "candidate"
+          ],
+          "query": [
+            {
+              "key": "candidateName",
+              "value": "Johny"
+            }
+          ],
+          "variable": [
+            {
+              "key": "electionId",
+              "value": "41"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Candidate",
+      "id": "3495110e-4189-486b-8b3a-154a0aa611e3",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/admin/election/:candidateId/candidate",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "election",
+            ":candidateId",
+            "candidate"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": "",
+              "disabled": true
+            }
+          ],
+          "variable": [
+            {
+              "key": "candidateId",
+              "value": "102"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cast Vote as not locked Elector",
+      "id": "f7d92b47-6c9b-468d-995b-27c9b3a4f3d2",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.d",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"electionId\": 20,\r\n    \"candidateId\": 201\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/vote",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cast Vote as locked Elector",
+      "id": "2bcf611d-d27c-4ead-84f2-916507a286be",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.g",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"electiondId\": 20,\r\n    \"candidateId\": 201\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/vote",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cast Vote as Admin",
+      "id": "4a8e7612-997c-42f8-86ec-f8e015473a68",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"electiondId\": 20,\r\n    \"candidateId\": 201\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/vote",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Candidate vote number",
+      "id": "2a59baf8-3b55-4d43-9bfa-7587cdc86f6c",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.d",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/vote/results/:electionId/candidate/:candidateId/votes",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote",
+            "results",
+            ":electionId",
+            "candidate",
+            ":candidateId",
+            "votes"
+          ],
+          "variable": [
+            {
+              "key": "electionId",
+              "value": "10"
+            },
+            {
+              "key": "candidateId",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Candidate results",
+      "id": "c94ebd49-7175-4fae-b417-872c67551b64",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.d",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/vote/results/:electionId/candidate/:candidateId",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote",
+            "results",
+            ":electionId",
+            "candidate",
+            ":candidateId"
+          ],
+          "variable": [
+            {
+              "key": "electionId",
+              "value": "10"
+            },
+            {
+              "key": "candidateId",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Election results",
+      "id": "720d0cd2-632c-4162-bf5d-dcc20e898e1c",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.a",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/vote/results/:electionId",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote",
+            "results",
+            ":electionId"
+          ],
+          "variable": [
+            {
+              "key": "electionId",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Election attendance",
+      "id": "0347d547-ad33-4f2b-8c59-54ed1cf2b31f",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "user.d",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/vote/results/:electionId/attendance",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "vote",
+            "results",
+            ":electionId",
+            "attendance"
+          ],
+          "variable": [
+            {
+              "key": "electionId",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
