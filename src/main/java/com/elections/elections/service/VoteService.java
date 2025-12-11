@@ -71,7 +71,7 @@ public class VoteService {
         long allVotes = voteRepository.countByElectionId(electionId);
         if (allVotes == 0) return Map.of(candidateId.toString(), 0.0);;
         double result = ((double) candidateVotes / allVotes) * 100.0;
-        return Map.of(electionId.toString(), Math.round(result * 100.0) / 100.0);
+        return Map.of(candidateId.toString(), Math.round(result * 100.0) / 100.0);
     }
 
     public Map<String, Double> calculateAttendance(Long electionId) {
@@ -94,7 +94,7 @@ public class VoteService {
             return results;
         }
         for (Candidate candidate: candidates) {
-            double votePrecent = voteRepository.countByCandidateIdAndElectionId(candidate.getId(), electionId);
+            double votePrecent = getCandidateVotesPrecent(candidate.getId(), electionId).get(candidate.getId().toString());
             results.put(candidate.getName(), votePrecent);
         }
         return results;
