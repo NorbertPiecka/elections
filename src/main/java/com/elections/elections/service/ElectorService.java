@@ -3,6 +3,7 @@ package com.elections.elections.service;
 import com.elections.elections.model.entity.Elector;
 import com.elections.elections.model.enums.Role;
 import com.elections.elections.repository.ElectorRepository;
+import com.elections.elections.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ElectorService implements UserDetailsService {
     private final ElectorRepository electorRepository;
+    private final VoteRepository voteRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -70,6 +72,7 @@ public class ElectorService implements UserDetailsService {
         if (!electorRepository.existsById(electorId)) {
             throw new IllegalArgumentException("Elect with provided ID has not been found");
         }
+        voteRepository.deleteByElectorId(electorId);
         electorRepository.deleteById(electorId);
     }
 

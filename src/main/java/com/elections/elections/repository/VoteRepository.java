@@ -10,4 +10,8 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
     long countByElectionId(Long electionId);
     @Modifying
     void deleteByCandidateId(Long candidateId);
+    @Modifying
+    void deleteByElectionId(Long electionId);
+    @Modifying
+    void deleteByElectorId(Long electorId);
 }

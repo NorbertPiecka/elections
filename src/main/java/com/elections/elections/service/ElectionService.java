@@ -50,6 +50,7 @@ public class ElectionService {
         if (!electionRepository.existsById(electionId)) {
             throw new IllegalArgumentException("Election with provided ID has not been found");
         }
+        voteRepository.deleteByElectionId(electionId);
         electionRepository.deleteById(electionId);
     }
 
